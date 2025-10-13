@@ -1,0 +1,24 @@
+// import { useState } from 'react'
+import { BrowserRouter, Routes , Route } from 'react-router-dom'
+import Home from './pages/Home';
+import Explore from './pages/Explore';
+import GameDetails from './pages/GameDetails';
+import './App.css'
+import Navigation from './components/Navigation';
+
+function App() {
+  // const [count, setCount] = useState(0)
+
+  return (
+    <BrowserRouter>
+    <Navigation />
+     <Routes>
+       <Route path='/' element={ <Home /> } /> 
+       <Route path='/explore' element={ <Explore /> } /> 
+       <Route path='/game/:id' element={ <GameDetails /> } /> 
+     </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App
