@@ -1,18 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navigation = () => {
   return (
     <div className='text-white flex items-center justify-between px-5 h-20 absolute w-full'>
 
-    
-    <div className='flex items-center justify-between'>
-        <img src="" alt="logo" />
-        <h1 className='sm:text-4xl font-medium '>Game Haven</h1>
-    </div>
+      <Link to={'/'} className='flex items-center justify-between'>
+      <img src="" alt="logo" />
+      <h1 className='sm:text-4xl font-medium '>Game Haven</h1>
+      </Link>
+
                                     
     <div>
         <label htmlFor="searchGames" className='flex items-center gap-2'>
-        <input type="search" name="searchGames" id="searchGames" placeholder='search games ..'   className="text-black bg-white border-1 px-3 py-1 w-48 sm:focus:w-72 sm:hover:w-72 transition-all duration-500 outline-none placeholder-gray-800"
+        <input type="search" name="searchGames" id="searchGames" placeholder='search games ..'   className="text-black bg-white border-1 px-3 py-1 sm:w-72 sm:focus:w-96 sm:hover:w-96 transition-all duration-500 outline-none placeholder-gray-800 "
         
         />
         <div className='sm:p-1 p-3 rounded-xl border-1  bg-black/20 '>

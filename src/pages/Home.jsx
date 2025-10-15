@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
       <div className='sm:w-1/2 w-full flex flex-col gap-6 '>
        <h1 className='text-white sm:text-6xl text-5xl'>Step into Game Haven, the digital home for gamers!</h1>
           <p className='text-2xl text-white'>Shop top titles, explore new worlds, and level up your collection today.</p>
-          <button className='p-3 bg-white w-'>Explore</button>
+          <Link className='p-3 bg-white cursor-pointer text-center' to={'/explore'}>Explore</Link>
        </div>
 
 
