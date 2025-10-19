@@ -3,3 +3,19 @@
 body{
     background-color: #111;
 }
+
+/* Hide scrollbar by default */
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+  /* Show scrollbar on hover */
+  /* .hide-scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .hide-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #4b5563; /* gray-600 */
+    /* border-radius: 4px; */
+  /* } */ 

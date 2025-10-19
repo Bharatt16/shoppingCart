@@ -1,12 +1,48 @@
-import React from 'react'
+import React , { useState , useEffect}  from 'react'
 import { Link } from 'react-router-dom'
 
 const Navigation = () => {
+
+
+
+
+
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+
+
+
+
+
+
+
+
+
   return (
-    <div className='text-white flex items-center justify-between px-5 h-20 absolute w-full'>
+    <div className={`text-white flex items-center justify-between px-5 h-20 fixed w-full transition-transform ${isVisible? "translate-y-0" : "-translate-y-full"} `}>
 
       <Link to={'/'} className='flex items-center justify-between'>
-      <img src="" alt="logo" />
+      {/* <img src="" alt="logo" /> */}
       <h1 className='sm:text-4xl font-medium '>Game Haven</h1>
       </Link>
 
