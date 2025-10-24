@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Explore = () => {
   const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
   const [games, setGames] = useState([]);
+  const [selectedGenre , setSelectedGenre] = useState("");
+  const [selectedPlatform , setSelectedPlatform] = useState("");
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -11,7 +14,7 @@ const Explore = () => {
           `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20`
         );
         const data = await result.json();
-        console.log("Fetched games:", data.results);
+        // console.log("Fetched games:", data.results);
         setGames(data.results);
       } catch (err) {
         console.log("Error fetching games ->", err);
@@ -19,6 +22,39 @@ const Explore = () => {
     };
     fetchGames();
   }, []);
+
+  useEffect(()=>{
+    const fetchGamesByGenre = async () => {
+      try {
+        const result = await fetch(
+          `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&genres=${selectedGenre}`
+        );
+        const data = await result.json();
+        // console.log("Fetched games by genre:", data.results);
+        setGames(data.results);
+      } catch (err) {
+        console.log("Error fetching games by genre ->", err);
+      }
+    };
+    fetchGamesByGenre();  
+  }, [selectedGenre]);
+
+  useEffect(()=>{
+    const fetchGamesByPlatform = async () => {
+      try {
+        const result = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&platforms=${selectedPlatform}`);
+        const data = await result.json();
+        console.log("Fetched games by platform:", data.results);
+        setGames(data.results);
+      } catch (err) {
+        console.log("Error fetching games by platform ->", err);
+      }
+    };
+    fetchGamesByPlatform();
+  }, [selectedPlatform]);
+
+
+  const navigate = useNavigate();
 
   return (
     <div className="sm:pt-40 pt-30 sm:px-6 px-4 flex flex-col">
@@ -135,7 +171,10 @@ const Explore = () => {
         <div className="category-4 flex flex-col gap-3 my-5">
           <h1 className="text-3xl font-bold text-white">Platforms</h1>
           <ul className="text-white flex flex-col gap-3 ">
-            <li>
+          <li 
+  onClick={() => setSelectedPlatform(4)} 
+  className={`${selectedPlatform === 4 ? "bg-[#202020] text-white" : "text-[#847878]"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -145,7 +184,10 @@ const Explore = () => {
                 PC
               </div>
             </li>
-            <li>
+            <li  
+  onClick={() => setSelectedPlatform(187)} 
+  className={`${selectedPlatform === 187 ? "bg-[#202020] text-white" : "text-gray-400"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
@@ -155,7 +197,10 @@ const Explore = () => {
                 Playstation
               </div>
             </li>
-            <li>
+            <li 
+  onClick={() => setSelectedPlatform(1)} 
+  className={`${selectedPlatform === 1 ? "bg-[#202020] text-white" : "text-gray-400"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -165,7 +210,10 @@ const Explore = () => {
                 Xbox One
               </div>
             </li>
-            <li>
+            <li 
+  onClick={() => setSelectedPlatform(7)} 
+  className={`${selectedPlatform === 7 ? "bg-[#202020] text-white" : "text-gray-400"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 16">
@@ -175,7 +223,10 @@ const Explore = () => {
                 Nintendo Switch
               </div>
             </li>
-            <li>
+            <li 
+  onClick={() => setSelectedPlatform(3)} 
+  className={`${selectedPlatform === 3 ? "bg-[#202020] text-white" : "text-gray-400"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -185,7 +236,10 @@ const Explore = () => {
                 IOS
               </div>
             </li>
-            <li>
+            <li 
+  onClick={() => setSelectedPlatform(21)} 
+  className={`${selectedPlatform === 21 ? "bg-[#202020] text-white" : "text-gray-400"}`}
+>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 18">
@@ -201,7 +255,7 @@ const Explore = () => {
         <div className="category-5 flex flex-col gap-3 my-5">
           <h1 className="text-3xl font-bold text-white">Genres</h1>
           <ul className="text-white flex flex-col gap-3 ">
-            <li>
+            <li onClick={()=> setSelectedGenre("action")} className={`${selectedGenre === "action" ? "bg-[#202020] text-white" : "text-gray-400"}`}>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -222,7 +276,7 @@ const Explore = () => {
                 Action
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("strategy")} className={`${selectedGenre === "strategy" ? "bg-[#202020] text-white" : "text-gray-400"}`}>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -262,7 +316,7 @@ const Explore = () => {
                 Stratagy
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("adventure")} className={`${selectedGenre === "adventure" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -313,7 +367,7 @@ const Explore = () => {
                 RPG
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("shooter")} className={`${selectedGenre === "shooter" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -350,7 +404,7 @@ const Explore = () => {
                 Shooter
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("adventure")} className={`${selectedGenre === "adventure" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -392,7 +446,7 @@ const Explore = () => {
                 Adventure
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("puzzle")} className={`${selectedGenre === "puzzle" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -425,7 +479,7 @@ const Explore = () => {
                 Puzzle
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("racing")} className={`${selectedGenre === "racing" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -445,7 +499,7 @@ const Explore = () => {
                 Racing
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedGenre("sports")} className={`${selectedGenre === "sports" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] ">
                   <svg className="invert"
@@ -468,6 +522,7 @@ const Explore = () => {
           games.map((game) => (
             <div
               key={game.id}
+              onClick={()=> navigate(`/game/${game.id}`)}
               className="card-1 bg-[#1d1c1c] m-3 rounded-xl w-105 text-white shadow-md hover:scale-105 transition"
             >
               <img
