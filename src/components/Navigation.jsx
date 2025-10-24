@@ -1,5 +1,6 @@
 import React , { useState , useEffect}  from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 const Navigation = () => {
   const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
@@ -54,15 +55,16 @@ const Navigation = () => {
 
 
 const navigate = useNavigate();
+const { id } = useParams();
 
-
-const handleSelect = (gameName) => {
-  setSearchQuery(gameName);
+const handleSelect = (id) => {
+  if(id){
+    navigate(`/game/${id}`);
+  } else {
+    navigate(`/explore?search=${searchQuery}`);
+  }
+  setSearchQuery("");
   setSuggestions([]);
-  console.log("Selected game:", gameName);
-  // 🔹 You can navigate or trigger a search in Explore page later
-  console.log("Searching for:", searchQuery);
-  navigate(`/explore?search=${searchQuery}`);
 };
 
 
@@ -100,7 +102,7 @@ useEffect(() => {
               )}
               </div>
               
-        <div onClick={() => handleSelect()} className='sm:p-1 p-3 rounded-xl border-1  bg-black/20 '>
+        <div onClick={() => handleSelect(id)} className='sm:p-1 p-3 rounded-xl border-1  bg-black/20 '>
         <img className='sm:h-5 ' src="/svgs/search.svg" style={{ filter: "brightness(0) invert(1)" }} alt="" />
         
         </div>

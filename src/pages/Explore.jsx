@@ -6,6 +6,22 @@ const Explore = () => {
   const [games, setGames] = useState([]);
   const [selectedGenre , setSelectedGenre] = useState("");
   const [selectedPlatform , setSelectedPlatform] = useState("");
+  const [selectedTop , setSelectedTop] = useState("");
+
+
+  useEffect(()=>{
+    const fetchGamesByTop = async () => {
+      try {
+        const result = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&top=10`);
+        const data = await result.json();
+        // console.log("Fetched games by top:", data.results);
+        setGames(data.results);
+      } catch (err) {
+        console.log("Error fetching games by top ->", err);
+      }
+    };
+    fetchGamesByTop();
+  },[]);  
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -44,7 +60,7 @@ const Explore = () => {
       try {
         const result = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&platforms=${selectedPlatform}`);
         const data = await result.json();
-        console.log("Fetched games by platform:", data.results);
+        // console.log("Fetched games by platform:", data.results);
         setGames(data.results);
       } catch (err) {
         console.log("Error fetching games by platform ->", err);
@@ -125,7 +141,7 @@ const Explore = () => {
         <div className="category-3 flex flex-col gap-3 my-5">
           <h1 className="text-3xl font-bold text-white">Top</h1>
           <ul className="text-white flex flex-col gap-3 ">
-            <li>
+            <li onClick={()=> setSelectedTop("best_of_the_year")} className={`${selectedTop === "best_of_the_year" ? "bg-[#202020] text-white" : "text-gray-400"}`}>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
@@ -141,8 +157,8 @@ const Explore = () => {
                 Best of the year
               </div>
             </li>
-            <li>
-              <div className="flex items-center hover:invert gap-3 ">
+            <li onClick={()=> setSelectedTop("popular_in_2025")} className={`${selectedTop === "popular_in_2025" ? "bg-[#202020] text-white" : "text-gray-400"}`} >
+                <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16">
                     <path d="M0 4h6v12H0V4zm9-4h6v16H9V0zm9 6h6v10h-6V6z"></path>
@@ -151,7 +167,7 @@ const Explore = () => {
                 Popular in 2025
               </div>
             </li>
-            <li>
+            <li onClick={()=> setSelectedTop("all_time_top")} className={`${selectedTop === "all_time_top" ? "bg-[#202020] text-white" : "text-gray-400"}`}>
               <div className="flex items-center hover:invert gap-3 ">
                 <div className="bg-[#202020] h-10 w-10 p-[10px] hover:invert">
                   <svg className="invert"
