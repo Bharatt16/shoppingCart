@@ -16,8 +16,6 @@ const Navigation = () => {
   // Shop panel
   const [showShop, setShowShop] = useState(false);
 
-  //show Add GamesPage
-
   // Navbar scroll
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -96,6 +94,7 @@ const Navigation = () => {
           <img
             src="/svgs/add.svg"
             alt="add"
+            onClick={() => navigate('/addGame')}
             className="h-5 pr-3 cursor-pointer invert border-r-2 border-black"
           />
           <img

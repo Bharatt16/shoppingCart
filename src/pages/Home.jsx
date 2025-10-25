@@ -5,7 +5,8 @@ const Home = () => {
   return (
     <div className='sm:pt-40 pt-30 sm:px-6 px-4 '>
        
-       <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/desktopVideoBG-2.mp4" autoPlay loop muted playsInline></video>
+       {/* <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/desktopVideoBG-2.mp4" autoPlay loop muted playsInline></video> */}
+       <img src="/images/bgWallpaper.jpeg" alt="" className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' />
        <video className='block sm:hidden fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/phoneVideoBg.mp4" autoPlay loop muted playsInline></video>
        
       <div className='flex w-full flex-col sm:flex-row gap-8'>
@@ -21,7 +22,7 @@ const Home = () => {
             <div className='p-5 h-full flex flex-col gap-5 justify-between backdrop-blur-xl shadow-2xl shadow-red-400 '>
             <h1 className='text-4xl font-bold pb-4'>Quick Navigation</h1>
            <div className=' p-2 bg-white text-black' >
-            <div className="wrapperNav flex gap-3 items-center">
+            <div className="wrapperNav flex gap-3 items-center justify-center">
             <svg className='h-5'
                     viewBox="0 0 20 22"
                     xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +38,7 @@ const Home = () => {
             
            </div>
            <div className=' p-2 bg-white text-black' >
-            <div className="wrapperNav flex gap-3 items-center">
+            <div className="wrapperNav flex gap-3 items-center justify-center">
             <svg className="h-5"
                     viewBox="0 0 25 16"
                     xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +52,7 @@ const Home = () => {
             
            </div>
            <div className=' p-2 bg-white text-black' >
-            <div className="wrapperNav flex gap-3 items-center">
+            <div className="wrapperNav flex gap-3 items-center justify-center">
             <svg className="h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16">
                     <path d="M0 4h6v12H0V4zm9-4h6v16H9V0zm9 6h6v10h-6V6z"></path>
                   </svg>
@@ -61,7 +62,7 @@ const Home = () => {
             
            </div>
            <div className=' p-2 bg-white text-black' >
-            <div className="wrapperNav flex gap-3 items-center">
+            <div className="wrapperNav flex gap-3 items-center justify-center">
             <svg className="h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M23.48 10.876a1.84 1.84 0 00.435-1.841c-.205-.656-.737-1.124-1.39-1.223l-5.811-.881a.762.762 0 01-.572-.434L13.544 1C13.252.384 12.66 0 12 0s-1.251.384-1.543 1.001L7.86 6.497a.763.763 0 01-.573.434l-5.81.882C.821 7.91.29 8.38.085 9.035a1.84 1.84 0 00.435 1.842l4.204 4.278c.18.182.262.445.22.702l-.992 6.04a1.814 1.814 0 00.375 1.457 1.69 1.69 0 002.122.437l5.197-2.852a.749.749 0 01.707 0l5.197 2.852c.253.139.523.209.8.209.509 0 .99-.236 1.322-.646.33-.408.463-.926.375-1.457l-.992-6.04a.816.816 0 01.219-.702l4.204-4.279z"></path>
                   </svg>
@@ -71,7 +72,7 @@ const Home = () => {
             
            </div>
            <div className=' p-2 bg-white text-[#221e1e]' >
-            <div className="wrapperNav flex gap-3 items-center">
+            <div className="wrapperNav flex gap-3 items-center justify-center">
             <svg className="h-5"
                     viewBox="0 0 27 27"
                     fill="black"
