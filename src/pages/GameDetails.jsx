@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-
 const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
 
 const GameDetails = () => {
@@ -11,8 +10,7 @@ const GameDetails = () => {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart } = useCart();
-
+  const { cart, addToCart } = useCart();
 
   useEffect(() => {
     const fetchGameDetails = async () => {
@@ -36,10 +34,10 @@ const GameDetails = () => {
     return (
       // <p className="text-white text-xl text-center mt-10">Loading details...</p>
       <div className="flex gap-3 justify-center items-center w-full min-h-screen space-x-2">
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.53s]"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.98s]"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
-          </div>
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.53s]"></div>
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.98s]"></div>
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+      </div>
     );
   }
 
@@ -52,7 +50,6 @@ const GameDetails = () => {
   const handleAddToCart = () => {
     addToCart(game);
   };
-  
 
   return (
     <div className="min-h-screen bg-[#121212] text-white p-6 sm:ml-[20%] sm:w-[78%] pt-40">
@@ -94,12 +91,21 @@ const GameDetails = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleAddToCart}
-          className="mt-3 bg-blue-600 hover:bg-blue-500 transition px-5 py-2 rounded-lg text-white w-fit"
-        >
-          🛒 Add to Cart
-        </button>
+        {cart.some((item) => item.id === game.id) ? (
+          <button
+            disabled
+            className="mt-3 bg-green-600 px-5 py-2 rounded-lg text-white w-fit cursor-not-allowed"
+          >
+            ✅ Added
+          </button>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            className="mt-3 bg-blue-600 hover:bg-blue-500 transition px-5 py-2 rounded-lg text-white w-fit"
+          >
+            🛒 Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );

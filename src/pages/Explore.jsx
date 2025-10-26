@@ -79,44 +79,35 @@ const Explore = () => {
 
   const navigate = useNavigate();
 
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
 
-  const[hamburgerOpen , setHamburgerOpen] = useState(false)
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
-
-const handleHamburgerClick = ()=>{
-
-  setHamburgerOpen(!hamburgerOpen)
-  console.log("clicked")
-
-}
-
-
+  const handleHamburgerClick = () => {
+    setHamburgerOpen(!hamburgerOpen);
+    console.log("clicked");
+  };
 
   return (
-
-  
-
     <div className=" sm:pt-20 pt-25 sm:px-6 px-4 flex flex-col">
       {/* 🧭 Sidebar — Fixed to the left */}
-        
+
       <div className="sm:block hidden">
-
-      <LeftSideBar
-        setSelectedGenre={setSelectedGenre}
-        setSelectedPlatform={setSelectedPlatform}
-        setSelectedTop={setSelectedTop}
-        selectedGenre={selectedGenre}
-        selectedPlatform={selectedPlatform}
-        selectedTop={selectedTop}
-      />
-
+        <LeftSideBar
+          setSelectedGenre={setSelectedGenre}
+          setSelectedPlatform={setSelectedPlatform}
+          setSelectedTop={setSelectedTop}
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+          selectedTop={selectedTop}
+        />
       </div>
 
-
-      <div className="hover:bg-blue-300 fixed sm:hidden block p-2 top-190 right-10  h-8 w-8 rounded-full bg-red-300"
-        onClick={handleHamburgerClick}>
-                  <img src="/svgs/hamburger.svg" alt="" />
+      <div
+        className="hover:bg-blue-300 fixed sm:hidden block p-2 bottom-10 right-10  h-8 w-8 rounded-full bg-[#a09898]"
+        onClick={handleHamburgerClick}
+      >
+        <img src="/svgs/hamburger.svg" alt="" />
       </div>
 
       {hamburgerOpen && (
@@ -128,7 +119,8 @@ const handleHamburgerClick = ()=>{
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedTop={selectedTop}
-        />)}
+        />
+      )}
 
       {/* 🎮 Games Section */}
 
@@ -152,12 +144,17 @@ const handleHamburgerClick = ()=>{
                 />
                 <div className="details mt-2 p-3">
                   <div className="flex justify-between text-sm">
-                    <p
-                      className="cursor-pointer hover:text-blue-400"
-                      onClick={() => addToCart(game)}
-                    >
-                      Add to cart +
-                    </p>
+                    {cart.some((item) => item.id === game.id) ? (
+                      <p className="text-green-400 font-semibold">Added ✓</p>
+                    ) : (
+                      <p
+                        className="cursor-pointer hover:text-blue-400"
+                        onClick={() => addToCart(game)}
+                      >
+                        Add to cart +
+                      </p>
+                    )}
+
                     <p>₹{Math.floor(game.rating * 1000) || 499}</p>
                   </div>
                   <div className="platforms text-xs text-gray-400 mt-1 cursor-pointer">
@@ -173,16 +170,14 @@ const handleHamburgerClick = ()=>{
                   </div>
                 </div>
               </div>
-
             ))
           ) : (
             // <p className="text-white text-xl">Loading games...</p>
             <div className="flex justify-center items-center w-full min-h-screen space-x-2">
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.33s]"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.66s]"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
-          </div>
-          
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.33s]"></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.66s]"></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+            </div>
           )}
         </div>
       </div>
@@ -193,6 +188,5 @@ const handleHamburgerClick = ()=>{
     </div>
   );
 };
-
 
 export default Explore;
