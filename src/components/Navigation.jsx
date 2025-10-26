@@ -7,7 +7,7 @@ const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart, clearCart } = useCart();
+  // const { cart, removeFromCart, clearCart } = useCart();
 
   // Search
   const [searchQuery, setSearchQuery] = useState("");

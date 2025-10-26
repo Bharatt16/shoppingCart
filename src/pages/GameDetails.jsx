@@ -34,13 +34,18 @@ const GameDetails = () => {
 
   if (loading) {
     return (
-      <p className="text-white text-xl text-center mt-10">Loading details...</p>
+      // <p className="text-white text-xl text-center mt-10">Loading details...</p>
+      <div className="flex gap-3 justify-center items-center w-full min-h-screen space-x-2">
+            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.53s]"></div>
+            <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.98s]"></div>
+            <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+          </div>
     );
   }
 
   if (!game) {
     return (
-      <p className="text-white text-xl text-center mt-10">Game not found.</p>
+      <p className="text-red-500 text-xl text-center mt-10">Game not found.</p>
     );
   }
 
