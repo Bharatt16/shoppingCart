@@ -15,12 +15,12 @@ const Home = () => {
 
   return (
     <div className="sm:pt-40 pt-30 sm:px-6 px-4 ">
-      {/* <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/desktopVideoBG-2.mp4" autoPlay loop muted playsInline></video> */}
-      <img
+      <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/bgvideo.mp4" autoPlay loop muted playsInline></video>
+      {/* <img
         src="/images/bgWallpaper.jpeg"
         alt=""
         className="hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover"
-      />
+      /> */}
       <video
         className="block sm:hidden fixed top-0 left-0 w-full h-full z-[-1] object-cover"
         src="/videos/phoneVideoBg.mp4"

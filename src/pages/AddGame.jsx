@@ -1,51 +1,121 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useUserGames } from "../context/UserGameContext";
+import { useNavigate } from "react-router-dom";
 
 const AddGame = () => {
-  const [gameName, setGameName] = useState('');
-  const [price, setPrice] = useState('');
-  const [imageURL, setImageURL] = useState('');
+  const [gameName, setGameName] = useState("");
+  const [price, setPrice] = useState("");
+  const [imageURL, setImageURL] = useState("");
+  const [availability, setAvailability] = useState("");
+
+  const { userAddedGames, setUserAddedGames } = useUserGames();
+
+  const navigate = useNavigate();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // For now, just log
-    console.log({ gameName, price, imageURL });
-    // Later, you can send this to a backend or add to your cart/game list
-    setGameName('');
-    setPrice('');
-    setImageURL('');
+
+    const newGame = {
+      id: Date.now(),
+      name: gameName,
+      price: price,
+      availability: availability,
+      background_image: imageURL,
+      parent_platforms: [],
+    };
+
+    setUserAddedGames((prev) => [...prev, newGame]);
+
+    setGameName("");
+    setPrice("");
+    setImageURL("");
+    setAvailability("");
+
+    navigate("/explore");
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white p-6 pt-20">
-      <h1 className="text-3xl font-bold mb-6">Add a New Game</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
-        <input
-          type="text"
-          placeholder="Game Name"
-          className="p-2 rounded bg-gray-800 text-white"
-          value={gameName}
-          onChange={(e) => setGameName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          className="p-2 rounded bg-gray-800 text-white"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          className="p-2 rounded bg-gray-800 text-white"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
-          required
-        />
+    <div className="min-h-screen text-white p-6 pt-20 text-center flex items-center flex-col gap-5">
+      <video
+        className="hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover"
+        src="/videos/addGameVideo.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
+
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5 max-w-md w-100 p-8 rounded-2xl backdrop-blur-xl
+             bg-white/10 border border-white/20 shadow-xl mx-auto"
+      >
+        <h2 className="text-3xl font-bold text-white text-center mb-2 tracking-wide">
+          Add New Game
+        </h2>
+
+        {/* Game Name */}
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-200 text-sm">Game Name</label>
+          <input
+            type="text"
+            placeholder="Enter game name"
+            className="p-3 rounded-lg bg-white/10 text-white border border-white/20 
+                 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all"
+            value={gameName}
+            onChange={(e) => setGameName(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Price */}
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-200 text-sm">Price</label>
+          <input
+            type="number"
+            placeholder="Enter price"
+            className="p-3 rounded-lg bg-white/10 text-white border border-white/20 
+                 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Availability */}
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-200 text-sm">Availability</label>
+          <input
+            type="text"
+            placeholder="Enter availability"
+            className="p-3 rounded-lg bg-white/10 text-white border border-white/20 
+                 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all"
+            value={availability}
+            onChange={(e) => setAvailability(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Image URL */}
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-200 text-sm">Image URL</label>
+          <input
+            type="text"
+            placeholder="Enter image URL"
+            className="p-3 rounded-lg bg-white/10 text-white border border-white/20 
+                 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all"
+            value={imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
+            required
+          />
+        </div>
+
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded mt-2 w-fit"
+          className="bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-xl w-full 
+               text-white font-semibold shadow-md hover:shadow-blue-500/40
+               transition-all mt-3"
         >
           Add Game
         </button>

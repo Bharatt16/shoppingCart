@@ -7,11 +7,13 @@ import AddGame from './pages/AddGame';
 import './App.css'
 import Navigation from './components/Navigation';
 import { CartProvider } from "./context/CartContext";
+import { UserGameProvider } from './context/UserGameContext';
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
+    <UserGameProvider>
     <CartProvider> {/* ✅ wrap everything here */}
       <BrowserRouter>
         <Navigation />
@@ -23,6 +25,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </CartProvider>
+    </UserGameProvider>
   )
 }
 

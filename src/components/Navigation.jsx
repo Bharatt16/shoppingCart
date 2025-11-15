@@ -72,7 +72,7 @@ const Navigation = () => {
             placeholder="Search games..."
             className="text-black px-3 py-1 bg-white sm:w-72 sm:focus:w-96 sm:hover:w-96 transition-all duration-500 outline-none rounded-md"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => setSearchQuery(e.target.value)} 
           />
           {suggestions.length > 0 && (
             <ul className="absolute top-full left-0 w-full bg-black/90 text-white p-2 max-h-40 overflow-y-auto rounded-lg">

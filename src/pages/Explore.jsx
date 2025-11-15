@@ -4,6 +4,7 @@ import ShopDetails from "../components/ShopDetails";
 import { useCart } from "../context/CartContext";
 import LeftSideBar from "../components/LeftSideBar";
 import Menu from "../components/menu";
+import { useUserGames } from "../context/UserGameContext";
 
 const Explore = () => {
   const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
@@ -11,27 +12,19 @@ const Explore = () => {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [selectedTop, setSelectedTop] = useState("");
-  // const [cart, setCart] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    const fetchGamesByTop = async () => {
-      try {
-        const result = await fetch(
-          `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&top=10`
-        );
-        const data = await result.json();
-        // console.log("Fetched games by top:", data.results);
-        setGames(data.results);
-      } catch (err) {
-        console.log("Error fetching games by top ->", err);
-      }
-    };
-    fetchGamesByTop();
-  }, []);
+  const [loading, setLoading] = useState(false);
+
+
+
+  const { userAddedGames } = useUserGames();
+  // const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
+        setLoading(true);
         const result = await fetch(
           `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20`
         );
@@ -40,6 +33,8 @@ const Explore = () => {
         setGames(data.results);
       } catch (err) {
         console.log("Error fetching games ->", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchGames();
@@ -48,6 +43,7 @@ const Explore = () => {
   useEffect(() => {
     const fetchGamesByGenre = async () => {
       try {
+        setLoading(true);
         const result = await fetch(
           `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&genres=${selectedGenre}`
         );
@@ -56,6 +52,8 @@ const Explore = () => {
         setGames(data.results);
       } catch (err) {
         console.log("Error fetching games by genre ->", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchGamesByGenre();
@@ -64,6 +62,7 @@ const Explore = () => {
   useEffect(() => {
     const fetchGamesByPlatform = async () => {
       try {
+        setLoading(true);
         const result = await fetch(
           `https://api.rawg.io/api/games?key=${API_KEY}&page_size=20&platforms=${selectedPlatform}`
         );
@@ -72,6 +71,8 @@ const Explore = () => {
         setGames(data.results);
       } catch (err) {
         console.log("Error fetching games by platform ->", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchGamesByPlatform();
@@ -88,6 +89,48 @@ const Explore = () => {
     console.log("clicked");
   };
 
+  //To change the title of the explore section
+  function getDisplayName() {
+    const platforms = {
+      4: "PC",
+      187: "PlayStation",
+      1: "Xbox One",
+      7: "Nintendo Switch",
+      3: "iOS",
+      21: "Android",
+    };
+  
+    const genres = {
+      action: "Action",
+      strategy: "Strategy",
+      adventure: "Adventure",
+      "role-playing-games-rpg": "RPG",
+      shooter: "Shooter",
+      puzzle: "Puzzle",
+      racing: "Racing",
+      sports: "Sports",
+    };
+  
+    const top = {
+      best_of_the_year: "Best of the year",
+      popular_in_2025: "Popular in 2025",
+      all_time_top: "All Time Top",
+    };
+  
+    if (selectedCategory === "added") return "Added Games";
+    if (genres[selectedGenre]) return genres[selectedGenre];
+    if (platforms[selectedPlatform]) return platforms[selectedPlatform];
+    if (top[selectedTop]) return top[selectedTop];
+  
+    return "All Time Top";
+  }
+  
+
+
+
+        // Use added games OR fetched games depending on selected category
+        const displayedGames = selectedCategory === "added" ? userAddedGames : games;
+
   return (
     <div className=" sm:pt-20 pt-25 sm:px-6 px-4 flex flex-col">
       {/* 🧭 Sidebar — Fixed to the left */}
@@ -100,6 +143,7 @@ const Explore = () => {
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedTop={selectedTop}
+          setSelectedCategory={setSelectedCategory}   
         />
       </div>
 
@@ -119,6 +163,7 @@ const Explore = () => {
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedTop={selectedTop}
+          setSelectedCategory={setSelectedCategory}   
         />
       )}
 
@@ -126,12 +171,21 @@ const Explore = () => {
 
       <div className="sm:ml-[22%] sm:w-[78%] min-h-screen overflow-y-auto p-6 border-1 border-[#4b4949] ">
         <h1 className="text-white text-3xl font-extralight mb-3 uppercase">
-          {selectedGenre || selectedPlatform || selectedTop || "All Time Top"}
+          {getDisplayName()}
         </h1>
 
+
+
         <div className="flex flex-wrap">
-          {games.length > 0 ? (
-            games.map((game) => (
+          {loading ? (
+            // <p className="text-white text-xl">Loading games...</p>
+            <div className="flex justify-center items-center w-full min-h-screen space-x-2">
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.33s]"></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.66s]"></div>
+              <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+            </div>
+          ) : (
+            displayedGames.map((game) => (
               <div
                 key={game.id}
                 className="card-1 bg-[#1d1c1c] m-3 rounded-xl w-105 text-white shadow-md hover:scale-105 transition"
@@ -171,13 +225,6 @@ const Explore = () => {
                 </div>
               </div>
             ))
-          ) : (
-            // <p className="text-white text-xl">Loading games...</p>
-            <div className="flex justify-center items-center w-full min-h-screen space-x-2">
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.33s]"></div>
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.66s]"></div>
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
-            </div>
           )}
         </div>
       </div>
