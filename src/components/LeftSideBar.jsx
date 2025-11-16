@@ -8,44 +8,36 @@ const LeftSideBar = ({
   selectedGenre,
   selectedPlatform,
   selectedTop,
-  setSelectedCategory,     // ✅ add this
-  selectedCategory 
+  setSelectedCategory, // ✅ add this
+  selectedCategory,
 }) => {
-
-
-   const { userAddedGames } = useUserGames();
-
-
-
-
-
+  const { userAddedGames } = useUserGames();
 
   return (
     <div className="sm:fixed top-25 left-6 h-[80vh] sm:w-1/5 sm:overflow-hidden hover:overflow-y-auto hide-scrollbar">
       <div className="category-1 flex flex-col gap-3">
         <h1 className="text-3xl font-bold text-white">Your Games</h1>
         <ul className="text-white flex flex-col gap-3">
-        <li
-  onClick={() => {
-    setSelectedCategory("added");   // ✅ the correct state
-    setSelectedGenre("");
-    setSelectedPlatform("");
-    setSelectedTop("");
-  }}
-  className={`cursor-pointer hover:bg-[#202020] ${
-    selectedCategory === "added" ? "bg-[#202020]" : ""
-  } text-white`}
->
-  <div className="flex items-center gap-3">
-    <div className="bg-[#202020] h-10 w-10 p-[10px]">
-      <svg className="fill-white" viewBox="0 0 27 27">
-        <path d="M0 26.24V18.957H7.286V26.24H0ZM9.478 26.24V18.957H16.765V26.24H9.478ZM0 16.762V9.47799H7.286V16.762H0ZM9.478 16.762V9.47799H16.765V16.762H9.478ZM18.957 16.762V9.47799H26.243V16.762H18.957ZM0 7.28299V0H7.286V7.28299H0ZM9.478 7.28299V0H16.765V7.28299H9.478ZM18.957 7.28299V0H26.243V7.28299H18.957Z" />
-      </svg>
-    </div>
-    Added Games
-  </div>
-</li>
-
+          <li
+            onClick={() => {
+              setSelectedCategory("added"); // ✅ the correct state
+              setSelectedGenre("");
+              setSelectedPlatform("");
+              setSelectedTop("");
+            }}
+            className={`cursor-pointer hover:bg-[#202020] ${
+              selectedCategory === "added" ? "bg-[#202020]" : ""
+            } text-white`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="bg-[#202020] h-10 w-10 p-[10px]">
+                <svg className="fill-white" viewBox="0 0 27 27">
+                  <path d="M0 26.24V18.957H7.286V26.24H0ZM9.478 26.24V18.957H16.765V26.24H9.478ZM0 16.762V9.47799H7.286V16.762H0ZM9.478 16.762V9.47799H16.765V16.762H9.478ZM18.957 16.762V9.47799H26.243V16.762H18.957ZM0 7.28299V0H7.286V7.28299H0ZM9.478 7.28299V0H16.765V7.28299H9.478ZM18.957 7.28299V0H26.243V7.28299H18.957Z" />
+                </svg>
+              </div>
+              Added Games
+            </div>
+          </li>
         </ul>
       </div>
 
@@ -55,13 +47,11 @@ const LeftSideBar = ({
           {/* PC */}
           <li
             onClick={() => {
-              setSelectedPlatform(4);  // or whichever
+              setSelectedPlatform(4); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
               setSelectedTop("");
-            }
-              
-            }
+            }}
             className={`cursor-pointer  hover:bg-[#202020] ${
               selectedPlatform === 4 ? "bg-[#202020]" : ""
             } text-white`}
@@ -82,10 +72,12 @@ const LeftSideBar = ({
 
           {/* Playstation */}
           <li
-            onClick={() => { setSelectedPlatform(187);  // or whichever
+            onClick={() => {
+              setSelectedPlatform(187); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
-              setSelectedTop("");}}
+              setSelectedTop("");
+            }}
             className={`cursor-pointer hover:bg-[#202020] ${
               selectedPlatform === 187 ? "bg-[#202020]" : ""
             } text-white`}
@@ -106,10 +98,12 @@ const LeftSideBar = ({
 
           {/* Xbox One */}
           <li
-            onClick={() =>{ setSelectedPlatform(1);  // or whichever
+            onClick={() => {
+              setSelectedPlatform(1); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
-              setSelectedTop("");}}
+              setSelectedTop("");
+            }}
             className={`cursor-pointer hover:bg-[#202020] ${
               selectedPlatform === 1 ? "bg-[#202020]" : ""
             } text-white`}
@@ -130,10 +124,12 @@ const LeftSideBar = ({
 
           {/* Nintendo Switch */}
           <li
-            onClick={() => { setSelectedPlatform(7);  // or whichever
+            onClick={() => {
+              setSelectedPlatform(7); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
-              setSelectedTop("");}}
+              setSelectedTop("");
+            }}
             className={`cursor-pointer hover:bg-[#202020] ${
               selectedPlatform === 7 ? "bg-[#202020]" : ""
             } text-white`}
@@ -154,10 +150,12 @@ const LeftSideBar = ({
 
           {/* iOS */}
           <li
-            onClick={() => { setSelectedPlatform(3);  // or whichever
+            onClick={() => {
+              setSelectedPlatform(3); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
-              setSelectedTop("");}}
+              setSelectedTop("");
+            }}
             className={`cursor-pointer hover:bg-[#202020] ${
               selectedPlatform === 3 ? "bg-[#202020]" : ""
             } text-white`}
@@ -178,10 +176,12 @@ const LeftSideBar = ({
 
           {/* Android */}
           <li
-            onClick={() => { setSelectedPlatform(21);  // or whichever
+            onClick={() => {
+              setSelectedPlatform(21); // or whichever
               setSelectedCategory(""); // 🔥 FIX
               setSelectedGenre("");
-              setSelectedTop("");}}
+              setSelectedTop("");
+            }}
             className={`cursor-pointer hover:bg-[#202020] ${
               selectedPlatform === 21 ? "bg-[#202020]" : ""
             } text-white`}
@@ -208,7 +208,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("action");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -243,7 +243,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("strategy");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -307,7 +307,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("role-playing-games-rpg");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -387,7 +387,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("shooter");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -429,7 +429,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("adventure");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -476,7 +476,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("puzzle");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -515,7 +515,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("racing");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}
@@ -581,7 +581,7 @@ const LeftSideBar = ({
           <li
             onClick={() => {
               setSelectedGenre("sports");
-              setSelectedCategory("");  // 🔥 FIX
+              setSelectedCategory(""); // 🔥 FIX
               setSelectedPlatform("");
               setSelectedTop("");
             }}

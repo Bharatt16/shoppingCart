@@ -5,6 +5,7 @@ import { useCart } from "../context/CartContext";
 import LeftSideBar from "../components/LeftSideBar";
 import Menu from "../components/menu";
 import { useUserGames } from "../context/UserGameContext";
+import { useLocation } from "react-router-dom";
 
 const Explore = () => {
   const API_KEY = "29b2edac77fe4917812ca612c7b177d3";
@@ -88,6 +89,61 @@ const Explore = () => {
     setHamburgerOpen(!hamburgerOpen);
     console.log("clicked");
   };
+
+
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const jump = params.get("jump");
+  
+  useEffect(() => {
+    if (!jump) return;
+  
+    // RESET EVERYTHING FIRST
+    setSelectedGenre("");
+    setSelectedPlatform("");
+    setSelectedTop("");
+    setSelectedCategory("");
+  
+    // PLATFORM
+    if (jump.startsWith("platform-")) {
+      const id = jump.split("-")[1];
+      setSelectedPlatform(Number(id));
+      return;
+    }
+  
+    // TOP FILTERS
+    if (jump === "all_time_top") {
+      setSelectedTop("all_time_top");
+      return;
+    }
+  
+    if (jump === "popular-2025") {
+      setSelectedTop("popular_in_2025");
+      return;
+    }
+  
+    // NEW RELEASES (if you implement later)
+    if (jump === "last-30-days") {
+      setSelectedTop("last_30_days");
+      return;
+    }
+  
+    // ADDED
+    if (jump === "added") {
+      setSelectedCategory("added");
+      return;
+    }
+  
+    // GENRE (MUST BE LAST - and ONLY genre)
+    setSelectedGenre(jump);
+  
+  }, [jump]);
+  
+  
+
+
+
 
   //To change the title of the explore section
   function getDisplayName() {

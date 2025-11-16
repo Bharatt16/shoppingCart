@@ -7,9 +7,9 @@ const Home = () => {
   const navigate = useNavigate()
 
   const handleQuickNav = (category) => {
-    navigate(`/explore?category=${category}`)
-  }
-
+    navigate(`/explore?jump=${category}`);
+  };
+  
 
 
 
@@ -50,23 +50,8 @@ const Home = () => {
         <div className="sm:w-1/2 w-full text-white text-2xl flex flex-col gap-2 justify-between sm:items-end">
           <div className="p-5 h-full flex flex-col gap-5 justify-between backdrop-blur-xl shadow-2xl shadow-red-400 ">
             <h1 className="text-4xl font-bold pb-4">Quick Navigation</h1>
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"   onClick={() => handleQuickNav('best-of-year')}>
-              <div className="wrapperNav flex gap-3 items-center justify-center">
-                <svg
-                  className="h-5"
-                  viewBox="0 0 20 22"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <g>
-                    <path d="M12.104 14.338c0-.2-.173-.324-.384-.273 0 0-.99.236-1.72.236s-1.72-.236-1.72-.236c-.21-.05-.384.072-.384.273v1.058c0 .2.179.365.397.365h3.414c.218 0 .397-.165.397-.365v-1.058zM16.033.73c0-.403-.355-.73-.794-.73H4.761c-.439 0-.794.327-.794.73v6.02c0 1.884.61 3.599 1.716 4.829A5.738 5.738 0 0010 13.499c1.67 0 3.202-.682 4.317-1.92 1.107-1.23 1.716-2.945 1.716-4.83V.73zM3.211 8.211C2.125 7.84 1.625 6.978 1.625 5.545V2.286h1.468V.827H.831c-.438 0-.794.327-.794.73v3.988c0 2.434 1.268 3.916 3.6 4.262a8.274 8.274 0 01-.426-1.596zm1.549 8.644c-.438 0-.793.327-.793.73v3.612c0 .402.355.73.794.73H15.24c.438 0 .793-.328.793-.73v-3.612c0-.403-.355-.73-.793-.73H4.76zM19.169.827h-2.262v1.46h1.468v3.258c0 1.433-.5 2.295-1.586 2.666a8.269 8.269 0 01-.426 1.596c2.332-.346 3.6-1.828 3.6-4.262V1.557c0-.403-.356-.73-.794-.73z"></path>
-                  </g>
-                </svg>
 
-                <h1 className="text-[20px]"> Best of the year</h1>
-              </div>
-            </div>
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('all-time-top')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('all_time_top')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
                 <svg
                   className="h-5"
@@ -80,33 +65,68 @@ const Home = () => {
                 <h1 className="text-[20px]"> All time top</h1>
               </div>
             </div>
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('popular-2025')}>
-              <div className="wrapperNav flex gap-3 items-center justify-center">
-                <svg
-                  className="h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 16"
-                >
-                  <path d="M0 4h6v12H0V4zm9-4h6v16H9V0zm9 6h6v10h-6V6z"></path>
-                </svg>
 
-                <h1 className="text-[20px]"> Popular in 2025</h1>
-              </div>
-            </div>
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-400" onClick={() => handleQuickNav('last-30-days')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"   onClick={() => handleQuickNav('platform-187')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
-                <svg
+              <svg
                   className="h-5"
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 21 16"
                 >
-                  <path d="M23.48 10.876a1.84 1.84 0 00.435-1.841c-.205-.656-.737-1.124-1.39-1.223l-5.811-.881a.762.762 0 01-.572-.434L13.544 1C13.252.384 12.66 0 12 0s-1.251.384-1.543 1.001L7.86 6.497a.763.763 0 01-.573.434l-5.81.882C.821 7.91.29 8.38.085 9.035a1.84 1.84 0 00.435 1.842l4.204 4.278c.18.182.262.445.22.702l-.992 6.04a1.814 1.814 0 00.375 1.457 1.69 1.69 0 002.122.437l5.197-2.852a.749.749 0 01.707 0l5.197 2.852c.253.139.523.209.8.209.509 0 .99-.236 1.322-.646.33-.408.463-.926.375-1.457l-.992-6.04a.816.816 0 01.219-.702l4.204-4.279z"></path>
+                  <path d="M11.112 16L8 14.654V0s6.764 1.147 7.695 3.987c.931 2.842-.52 4.682-1.03 4.736-1.42.15-1.96-.748-1.96-.748V3.39l-1.544-.648L11.112 16zM12 14.32V16s7.666-2.338 8.794-3.24c1.128-.9-2.641-3.142-4.666-2.704 0 0-2.152.099-4.102.901-.019.008 0 1.51 0 1.51l4.948-1.095 1.743.73L12 14.32zm-5.024-.773s-.942.476-3.041.452c-2.1-.024-3.959-.595-3.935-1.833C.024 10.928 3.476 9.571 6.952 9v1.738l-3.693.952s-.632.786.217.81A11.934 11.934 0 007 12.046l-.024 1.5z"></path>
                 </svg>
 
-                <h1 className="text-[20px]">Last 30 days </h1>
+                <h1 className="text-[20px]">Playstation</h1>
               </div>
             </div>
-            <div className=" p-2 bg-white text-[#221e1e]"  onClick={() => handleQuickNav('recently-added')}>
+          
+            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('adventure')}>
+              <div className="wrapperNav flex gap-3 items-center justify-center">
+              <svg
+                  className="h-5"
+                  id="Layer_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512.002 512.002"
+                  xmlSpace="preserve"
+                >
+                  <g>
+                    <g>
+                      <path
+                        d="M276.502,27.81c-4.051-7.562-11.935-12.281-20.515-12.281c-8.579,0-16.462,4.719-20.514,12.281l-81.861,152.808
+              c0.182,0.143,0.372,0.273,0.549,0.42l17.699,14.794l18.235,15.243l8.427,7.045l49.444-18.208c5.193-1.911,10.896-1.91,16.088,0.003
+              l49.402,18.204l8.424-7.036l18.24-15.235l17.741-14.818c0.164-0.14,0.344-0.258,0.512-0.391L276.502,27.81z"
+                      ></path>
+                    </g>
+                  </g>
+                  <g>
+                    <g>
+                      <path
+                        d="M508.654,461.168L380.802,222.513l-18.239,15.235l-18.24,15.232l-11.363,9.492c-6.39,5.339-15.153,6.856-22.966,3.976
+              l-53.991-19.894l-54.035,19.896c-2.616,0.963-5.337,1.434-8.039,1.435c-5.376,0-10.675-1.862-14.928-5.416l-11.353-9.492
+              l-18.235-15.243l-18.234-15.243L2.759,462.211c-3.863,7.211-3.658,15.924,0.546,22.944c4.204,7.02,11.785,11.318,19.967,11.318
+              h465.428c0.012,0,0.023,0,0.031,0c12.854,0,23.271-10.421,23.271-23.271C512,468.797,510.778,464.681,508.654,461.168z"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+
+                <h1 className="text-[20px]">Adventure</h1>
+              </div>
+            </div>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20" onClick={() => handleQuickNav('last-30-days')}>
+              <div className="wrapperNav flex gap-3 items-center justify-center">
+              <svg
+                  className="h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 19 26"
+                >
+                  <path d="M4.929 25.819C1.783 16.36 8.43 12.909 8.43 12.909c-.465 5.046 2.679 8.977 2.679 8.977 1.156-.318 3.363-1.805 3.363-1.805 0 1.805-1.165 5.735-1.165 5.735s4.077-2.875 5.36-7.65c1.281-4.776-2.441-9.57-2.441-9.57.224 3.38-1.03 6.704-3.485 9.244.123-.13.226-.273.305-.43.441-.804 1.15-2.896.735-7.741C13.197 2.868 6.442 0 6.442 0 7.024 4.144 5.28 5.098 1.19 12.964c-4.09 7.864 3.74 12.855 3.74 12.855z"></path>
+                </svg>
+
+                <h1 className="text-[20px]">This Week</h1>
+              </div>
+            </div>
+            <div className=" p-2 bg-white text-[#221e1e] cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('added')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
                 <svg
                   className="h-5"
@@ -124,6 +144,7 @@ const Home = () => {
                 <h1 className="text-[20px]"> Added</h1>
               </div>
             </div>
+
           </div>
         </div>
       </div>

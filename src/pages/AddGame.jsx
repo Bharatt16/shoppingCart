@@ -38,7 +38,7 @@ const AddGame = () => {
   return (
     <div className="min-h-screen text-white p-6 pt-20 text-center flex items-center flex-col gap-5">
       <video
-        className="hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover"
+        className="fixed top-0 left-0 w-full h-full z-[-1] object-cover"
         src="/videos/addGameVideo.mp4"
         autoPlay
         loop
@@ -48,7 +48,7 @@ const AddGame = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 max-w-md w-100 p-8 rounded-2xl backdrop-blur-xl
+        className="flex flex-col gap-5 w-85 sm:w-150 md:mt-25 lg:mt-5 mt-20 p-8 rounded-2xl backdrop-blur-xl
              bg-white/10 border border-white/20 shadow-xl mx-auto"
       >
         <h2 className="text-3xl font-bold text-white text-center mb-2 tracking-wide">
