@@ -244,7 +244,8 @@ const Explore = () => {
             displayedGames.map((game) => (
               <div
                 key={game.id}
-                className="card-1 bg-[#1d1c1c] m-3 rounded-xl w-105 text-white shadow-md hover:scale-105 transition"
+                className="card-1 bg-[#1d1c1c] m-3 rounded-xl  flex-1 min-w-[300px] max-w-[450px]
+ text-white shadow-md hover:scale-105 transition"
               >
                 <img
                   src={game.background_image}

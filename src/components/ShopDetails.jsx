@@ -27,7 +27,7 @@ const ShopDetails = ({ setShowShop }) => {
   return (
     <div
       ref={ref}
-      className="min-h-screen bg-[#141212] text-white z-50 sm:w-1/4 w-2/3 fixed right-0 top-0 px-5 py-4 flex flex-col"
+      className="h-[100vh] bg-[#141212] text-white z-50 sm:w-1/4 w-2/3 fixed right-0 top-0 px-5 py-4 flex flex-col"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-7 flex-shrink-0">

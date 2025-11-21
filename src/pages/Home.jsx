@@ -15,9 +15,9 @@ const Home = () => {
 
   return (
     <div className="sm:pt-40 pt-30 sm:px-6 px-4 ">
-      <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/bgvideo.mp4" autoPlay loop muted playsInline></video>
+      <video className='hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover' src="/videos/bgCheck.mp4" autoPlay loop muted playsInline></video>
       {/* <img
-        src="/images/bgWallpaper.jpeg"
+        src="/images/bg.jpeg"
         alt=""
         className="hidden sm:block fixed top-0 left-0 w-full h-full z-[-1] object-cover"
       /> */}
@@ -48,10 +48,10 @@ const Home = () => {
         </div>
 
         <div className="sm:w-1/2 w-full text-white text-2xl flex flex-col gap-2 justify-between sm:items-end">
-          <div className="p-5 h-full flex flex-col gap-5 justify-between backdrop-blur-xl shadow-2xl shadow-red-400 ">
+          <div className="p-5 h-full flex flex-col gap-5 justify-between backdrop-blur-xl shadow-xl shadow-white ">
             <h1 className="text-4xl font-bold pb-4">Quick Navigation</h1>
 
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('all_time_top')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:invert"  onClick={() => handleQuickNav('all_time_top')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
                 <svg
                   className="h-5"
@@ -66,7 +66,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"   onClick={() => handleQuickNav('platform-187')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:invert"   onClick={() => handleQuickNav('platform-187')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
               <svg
                   className="h-5"
@@ -80,7 +80,7 @@ const Home = () => {
               </div>
             </div>
           
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('adventure')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:invert"  onClick={() => handleQuickNav('adventure')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
               <svg
                   className="h-5"
@@ -113,7 +113,7 @@ const Home = () => {
                 <h1 className="text-[20px]">Adventure</h1>
               </div>
             </div>
-            <div className=" p-2 bg-white text-black cursor-pointer hover:bg-red-500/20" onClick={() => handleQuickNav('last-30-days')}>
+            <div className=" p-2 bg-white text-black cursor-pointer hover:invert" onClick={() => handleQuickNav('last-30-days')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
               <svg
                   className="h-5"
@@ -126,7 +126,7 @@ const Home = () => {
                 <h1 className="text-[20px]">This Week</h1>
               </div>
             </div>
-            <div className=" p-2 bg-white text-[#221e1e] cursor-pointer hover:bg-red-500/20"  onClick={() => handleQuickNav('added')}>
+            <div className=" p-2 bg-white text-[#221e1e] cursor-pointer hover:invert"  onClick={() => handleQuickNav('added')}>
               <div className="wrapperNav flex gap-3 items-center justify-center">
                 <svg
                   className="h-5"
