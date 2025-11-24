@@ -17,8 +17,6 @@ const Explore = () => {
 
   const [loading, setLoading] = useState(false);
 
-
-
   const { userAddedGames } = useUserGames();
   // const [cart, setCart] = useState([]);
 
@@ -90,60 +88,52 @@ const Explore = () => {
     console.log("clicked");
   };
 
-
-
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const jump = params.get("jump");
-  
+
   useEffect(() => {
     if (!jump) return;
-  
+
     // RESET EVERYTHING FIRST
     setSelectedGenre("");
     setSelectedPlatform("");
     setSelectedTop("");
     setSelectedCategory("");
-  
+
     // PLATFORM
     if (jump.startsWith("platform-")) {
       const id = jump.split("-")[1];
       setSelectedPlatform(Number(id));
       return;
     }
-  
+
     // TOP FILTERS
     if (jump === "all_time_top") {
       setSelectedTop("all_time_top");
       return;
     }
-  
+
     if (jump === "popular-2025") {
       setSelectedTop("popular_in_2025");
       return;
     }
-  
+
     // NEW RELEASES (if you implement later)
     if (jump === "last-30-days") {
       setSelectedTop("last_30_days");
       return;
     }
-  
+
     // ADDED
     if (jump === "added") {
       setSelectedCategory("added");
       return;
     }
-  
+
     // GENRE (MUST BE LAST - and ONLY genre)
     setSelectedGenre(jump);
-  
   }, [jump]);
-  
-  
-
-
-
 
   //To change the title of the explore section
   function getDisplayName() {
@@ -155,7 +145,7 @@ const Explore = () => {
       3: "iOS",
       21: "Android",
     };
-  
+
     const genres = {
       action: "Action",
       strategy: "Strategy",
@@ -166,26 +156,23 @@ const Explore = () => {
       racing: "Racing",
       sports: "Sports",
     };
-  
+
     const top = {
       best_of_the_year: "Best of the year",
       popular_in_2025: "Popular in 2025",
       all_time_top: "All Time Top",
     };
-  
+
     if (selectedCategory === "added") return "Added Games";
     if (genres[selectedGenre]) return genres[selectedGenre];
     if (platforms[selectedPlatform]) return platforms[selectedPlatform];
     if (top[selectedTop]) return top[selectedTop];
-  
+
     return "All Time Top";
   }
-  
 
-
-
-        // Use added games OR fetched games depending on selected category
-        const displayedGames = selectedCategory === "added" ? userAddedGames : games;
+  // Use added games OR fetched games depending on selected category
+  const displayedGames = selectedCategory === "added" ? userAddedGames : games;
 
   return (
     <div className=" sm:pt-20 pt-25 sm:px-6 px-4 flex flex-col">
@@ -199,7 +186,7 @@ const Explore = () => {
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedTop={selectedTop}
-          setSelectedCategory={setSelectedCategory}   
+          setSelectedCategory={setSelectedCategory}
         />
       </div>
 
@@ -219,7 +206,7 @@ const Explore = () => {
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           selectedTop={selectedTop}
-          setSelectedCategory={setSelectedCategory}   
+          setSelectedCategory={setSelectedCategory}
         />
       )}
 
@@ -230,17 +217,19 @@ const Explore = () => {
           {getDisplayName()}
         </h1>
 
-
-
         <div className="flex flex-wrap">
-          {loading ? (
-            // <p className="text-white text-xl">Loading games...</p>
-            <div className="flex justify-center items-center w-full min-h-screen space-x-2">
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.33s]"></div>
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce [animation-delay:-0.66s]"></div>
-              <div className="w-3 h-3 bg-white rounded-full animate-bounce"></div>
-            </div>
-          ) : (
+  {loading ? (
+    <div className="flex flex-wrap h-full w-full">
+      {[1, 2, 3, 4].map((num) => (
+        <div
+          key={num}
+          className="skeleton  h-[200px] bg-[#1d1c1c] m-3 rounded-xl flex-1 min-w-[300px] max-w-[450px]
+          shadow-md animate-pulse"
+        ></div>
+      ))}
+    </div>
+  ) 
+: (
             displayedGames.map((game) => (
               <div
                 key={game.id}
