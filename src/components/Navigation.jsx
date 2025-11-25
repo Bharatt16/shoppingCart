@@ -70,7 +70,7 @@ const Navigation = () => {
           <input
             type="search"
             placeholder="Search games..."
-            className="text-black px-3 py-1 bg-white sm:w-72 sm:focus:w-96 sm:hover:w-96 transition-all duration-500 outline-none rounded-md"
+            className="text-black px-3 py-1 bg-white w-40 sm:w-72 sm:focus:w-96 sm:hover:w-96 transition-all duration-500 outline-none rounded-md"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)} 
           />
